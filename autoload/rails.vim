@@ -1776,6 +1776,9 @@ function! s:BufFinderCommands()
   call s:addfilecmds("functionaltest")
   call s:addfilecmds("integrationtest")
   call s:addfilecmds("stylesheet")
+  call s:addfilecmds("spec")
+  call s:addfilecmds("speccontroller")
+  call s:addfilecmds("specmodel")
   call s:addfilecmds("javascript")
   call s:addfilecmds("task")
   call s:addfilecmds("lib")
@@ -1942,6 +1945,14 @@ function! s:pluginList(A,L,P)
   else
     return s:relglob('vendor/plugins/',"*","/init.rb")
   endif
+endfunction
+
+function! s:speccontrollerList(A,L,P)
+  return s:autocamelize(s:relglob("spec/controllers/",s:recurse,"_controller_spec.rb"),a:A)
+endfunction
+
+function! s:specmodelList(A,L,P)
+  return s:autocamelize(s:relglob("spec/models/",s:recurse,"_spec.rb"),a:A)
 endfunction
 
 " Task files, not actual rake tasks
@@ -2322,6 +2333,26 @@ function! s:integrationtestEdit(bang,cmd,...)
     let f = s:controller()
   endif
   return s:EditSimpleRb(a:bang,a:cmd,"integrationtest",f,"test/integration/","_test.rb")
+endfunction
+
+function! s:specEdit(bang,cmd,...)
+  if s:model() != ''
+    let f = s:model()
+    return s:EditSimpleRb(a:bang,a:cmd,"spec",f,"spec/models/","_spec.rb")
+  else
+    let f = s:controller()
+    return s:EditSimpleRb(a:bang,a:cmd,"spec",f,"spec/controllers/","_controller_spec.rb")
+  endif
+endfunction
+
+function! s:speccontrollerEdit(bang,cmd,...)
+  let f = s:controller()
+  return s:EditSimpleRb(a:bang,a:cmd,"speccontroller",f,"spec/controllers/","_controller_spec.rb")
+endfunction
+
+function! s:specmodelEdit(bang,cmd,...)
+  let f = s:model()
+  return s:EditSimpleRb(a:bang,a:cmd,"specmodel",f,"spec/models/","_spec.rb")
 endfunction
 
 function! s:pluginEdit(bang,cmd,...)
