@@ -1,0 +1,1 @@
+/home/maedana/local/repos/public/git/merb.vim/syntax/merb_view.vim
