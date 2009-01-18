@@ -45,7 +45,7 @@ command! -nargs=? HatenaEdit            call <SID>HatenaEdit(<args>)
 " Usage:
 "   :HatenaUpdate [title_of_the_day]
 " title_of_the_day を指定しない場合は既に設定されているタイトルが使われる
-"command! -nargs=? HatenaUpdate         call <SID>HatenaUpdate(<args>)
+command! -nargs=? HatenaUpdate         call <SID>HatenaUpdate(<args>)
 
 " :HatenaUpdate と一緒だけど、`ちょっとした更新' にする
 "command! -nargs=? HatenaUpdateTrivial  let b:trivial=1 | call <SID>HatenaUpdate(<args>)
@@ -252,7 +252,8 @@ function! s:HatenaEdit(...) " 編集する
     let b:timestamp     = content['timestamp']
     let b:prev_titlestring = &titlestring
 
-    autocmd BufWritePost <buffer> call s:HatenaUpdate() | set readonly |let &titlestring = b:prev_titlestring | bdelete
+    " 自動保存すると更新頻度がえらいことになってしまうのでオフ
+    " autocmd BufWritePost <buffer> call s:HatenaUpdate() | set readonly |let &titlestring = b:prev_titlestring | bdelete
     autocmd WinLeave <buffer> let &titlestring = b:prev_titlestring
     autocmd WinEnter <buffer> let &titlestring = b:diary_title . ' ' . b:year . '-' . b:month . '-' . b:day . ' [' . b:hatena_login_info[1] . ']'
     let &titlestring = b:diary_title . ' ' . b:year . '-' . b:month . '-' . b:day . ' [' . user . ']'
