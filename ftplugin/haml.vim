@@ -64,3 +64,5 @@ let b:undo_ftplugin = "setl cms< com< "
 let &cpo = s:save_cpo
 
 " vim:set sw=2:
+set ts=2
+set et
