@@ -1,1 +1,0 @@
-/home/maedana/local/repos/public/git/merb.vim/after/syntax/ruby.vim
