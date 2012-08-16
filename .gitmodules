@@ -2,3 +2,4 @@
 	path = .vim/vundle.git
 	url = http://github.com/gmarik/vundle.git
 	ignore = untracked
+	ignore = dirty
