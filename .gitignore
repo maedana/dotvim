@@ -9,4 +9,4 @@ cookies/*
 /doc/tags
 .netrwhist
 /templates/
-/bundle/.neobundle/
+/bundle/
