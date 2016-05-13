@@ -10,3 +10,4 @@ cookies/*
 .netrwhist
 /templates/
 /bundle/
+/ref/
